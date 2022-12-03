@@ -1,0 +1,105 @@
+@import url(./global.less);
+
+.container {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 857px;
+    .login {
+        background-color: @container-background-color;
+        border-radius: 6px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+        width: 450px;
+
+        form {
+            color: @primary-text-color;
+            display: flex;
+            flex-direction: column;
+            padding: 40px;
+            h1 {
+                color: @primary-color;
+                font: normal 600 22px Poppins_semiBold;
+            }
+            h2 {
+                color: @primary-text-color;
+                font: normal 600 40px Poppins_semiBold;
+                margin-top: 39px;
+            }
+            label {
+                color: @primary-text-color;
+                font: normal 300 16px/24px Poppins_light;
+                margin-top: 22px;
+                a {
+                    color: rgba(0, 0, 0, 0.5);
+                    float: right;
+                    font: normal 300 14px Poppins_light;
+                    margin-top: 2px;
+                }
+            }
+            input {
+                background:@input-background-color;
+                border-radius: 4px;
+                border: none;
+                color: @primary-text-color;
+                font: normal 400 14px/21px Poppins_Regular;
+                margin: 5px 0px;
+                padding: 14px 9px;
+                &.error_input {
+                    background-color: @input-error-background-color;
+                }
+            }
+            .error_text {
+                font: normal 300 14px/21px Poppins_light;
+                color: @text-error-color;
+            }
+            button[type=submit] {
+                background: @primary-color;
+                border-radius: 4px;
+                border: none;
+                color: white;
+                font: normal 600 16px/24px Poppins_semiBold;
+                margin: 35px auto 33px auto;
+                padding: 16px 0px;
+                width: 136px;
+            }
+            .is_registered {
+                color: @secondary-text-color;
+                font: normal 400 16px/22px Poppins_Regular;
+                text-align: center;
+                a {
+                    color: @primary-color;
+                }
+            }
+        }
+    }
+}
+
+#design-panel {
+    background-color: @right-panel-color;
+    width: 600px;
+    img {
+        position: relative;
+        right: 68px;
+        top: 90px
+    }
+}
+
+@media screen and (max-width: 1236px){
+    .container {
+        width: 100%;
+    }
+    #design-panel {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 520px){
+    .container {
+       background-color: white;
+        form {
+            border-radius: 0;
+            box-shadow: none;
+            width: 100%;
+        }
+    }
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Register form of the wall assignment">
+    <meta name="author" content="John Paolo R. Ruelo">
+
+    <link rel="stylesheet" href="/assets/css/signup.css">
+    <title>Sign Up Page</title>
+</head>
+<body>
+    <div class="container">
+        <div class="sign_up">
+            <form action="POST" class="signup_form">
+                <h1>The Wall</h1>
+                <h2>Register</h2>
+                <label>Email</label>
+                <input type="text" class="email_input">
+                <p class="error_email error_text"></p>
+
+                <label>Password</label>
+                <input type="password" class="password_input">
+                <p class="error_password error_text"></p>
+
+                <label>Confirm Password</label>
+                <input type="password" class="confirm_password_input">
+                <p class="error_confirm_password error_text"></p>
+
+                <p class="note">By creating an account, you agree with The Wall's
+                    <a href="#">Privacy Policy</a> and
+                    <a href="#">Terms of Use</a>
+                </p>
+
+                <button type="submit">SIGN UP</button>
+
+                <p class="is_registered">Already have an account ? 
+                    <a href="index.html">Sign In</a>
+                </p>
+            </form>
+        </div>
+    </div>
+    <div id="design-panel">
+        <img src="/assets/images/userpanel.png" alt="Right panel Image">
+    </div>
+    <script src="/assets/js/global.js"></script>
+    <script src="/assets/js/signup.js"></script>
+</body>
+</html>
+

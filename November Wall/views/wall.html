@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dashboard of the wall assignment">
+    <meta name="author" content="John Paolo Ruelo">
+    <link rel="stylesheet" href="../assets/css/wall.css">
+    <title>Dashboard</title>
+</head>
+<body>
+    <nav>
+        <h1>The Wall Assignment</h1>
+        <p class="user">Welcome, Jp Ruelo! <a href="index.html" class="logout">Logout</a></p>
+    </nav>
+    <div class="messages_area">
+        <header>
+            <p class="message_count"><strong></strong> messages arranged by latest posted</p>
+            <button type="button" class="create_msg_btn">Create Message</button>
+        </header>
+
+        <!-- modal to create a message -->
+        <form class="create_msg_modal">
+            <button type="button" class="close_modal_btn"></button>
+            <h2>Create a Message</h2>
+            <textarea placeholder="Type your message here."></textarea>
+            <footer class="modal_btns_container">
+                <button type="button" class="cancel_btn">Cancel</button>
+                <button type="submit" class="post_msg_btn disabled">Post message</button>
+            </footer>
+        </form>
+
+        <!-- will prompt if there's no message -->
+        <div class="no_msg_prompt">
+            <img src="../assets/images/empty_Icon.png" alt="Empty message icon">
+            No Posted Message Yet.
+        </div>
+
+        <div class="messages_container">
+            <!-- to be cloned -->
+            <div class="message_block">
+                <!-- for displaying the message -->
+                <div class="display_msg">
+                    <p class="message_body">daniel</p>
+                    <footer class="actions">
+                        <div class="buttons">
+                            <button type="button" class="comment_btn"><span></span><strong class="comment_count">0</strong>Comment</button>
+                            <button type="button" class="edit_btn"><span></span>Edit</button>
+                            <button type="button" class="delete_btn"><span></span>Delete</button>
+                        </div>
+                        <div class="message_info">
+                            <img src="../assets/images/user-icon.png" alt="User icon">
+                            <span class="posted_by">You</span> - 
+                            <span class="post_time">Few seconds ago</span>
+                        </div>
+                    </footer>
+                </div>
+                <!-- for displaying the edit message form -->
+                <form class="edit_msg_form">
+                    <textarea></textarea>
+                    <footer>
+                        <button type="button" class="cancel_btn">Cancel</button>
+                        <button type="submit" class="edit_msg_btn">Update Message</button>
+                    </footer>
+                </form>
+                <form class="comment_form">
+                    <textarea></textarea>
+                    <button class="post_comment_btn">Post Comment</button>
+                </form>
+                <div class="comments"></div>
+            </div>
+        </div>
+        <!-- to be cloned -->
+        <div class="comment_block">
+            <div class="display_comment">
+                <p class="comment_body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis possimus nisi placeat maxime impedit ullam autem sint voluptatibus deleniti modi.</p>
+                <footer class="actions">
+                    <div class="buttons">
+                        <button type="button" class="edit_btn"><span></span>Edit</button>
+                        <button type="button" class="delete_btn"><span></span>Delete</button>
+                    </div>
+                    <div class="message_info">
+                        <span class="posted_by">You</span> - 
+                        <span class="post_time">Few seconds ago</span>
+                    </div>
+                </footer>
+            </div>
+            <!-- for displaying the edit comment form -->
+            <form class="edit_comment_form">
+                <textarea></textarea>
+                <footer>
+                    <button type="button" class="cancel_btn">Cancel</button>
+                    <button type="submit" class="edit_msg_btn">Update Comment</button>
+                </footer>
+            </form>
+        </div>
+    </div>
+    
+    <script src="../assets/js/global.js"></script>
+    <script src="../assets/js/wall.js"></script>
+</body>
+</html>

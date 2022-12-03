@@ -1,0 +1,411 @@
+@font-face {
+  font-family: Poppins_Regular;
+  src: url(../fonts/Poppins-Regular.ttf);
+}
+@font-face {
+  font-family: Poppins_semiBold;
+  src: url(../fonts/Poppins-SemiBold.ttf);
+}
+@font-face {
+  font-family: Poppins_light;
+  src: url(../fonts/Poppins-Light.ttf);
+}
+@font-face {
+  font-family: Poppins_medium;
+  src: url(../fonts/Poppins-Medium.ttf);
+}
+/* normalize css */
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  margin: 0px;
+  padding: 0px;
+}
+a {
+  text-decoration: none;
+}
+body {
+  align-self: center;
+  background-color: #fbfbfb;
+  display: flex;
+  height: 100vh;
+  width: 1440px;
+}
+.submit_btn {
+  background-color: #2c6bff;
+  border-radius: 6px;
+  border: none;
+  color: white;
+  font: normal 500 16px/24px Poppins_medium;
+  padding: 12px 40px;
+}
+.cancel_btn {
+  background-color: transparent;
+  border: none;
+  color: #707070;
+  font: normal 400 16px/24px Poppins_medium;
+}
+textarea {
+  background-color: #f5f8ff;
+  border-radius: 6px;
+  border: 1px solid #dce6ff;
+  font: normal 300 16px/24px Poppins_light;
+  padding: 8px 12px;
+  resize: none;
+  width: 100%;
+}
+button {
+  cursor: pointer;
+}
+.close_modal_button {
+  background: url(../images/icons.png) no-repeat -93px -6px;
+  border: none;
+  height: 18px;
+  position: absolute;
+  right: 19px;
+  top: 18px;
+  width: 18px;
+}
+body {
+  background-color: #fbfbfb;
+  display: block;
+}
+nav {
+  align-items: center;
+  background-color: white;
+  box-shadow: 0px 4px 8px 0px #0000000D;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+  padding: 40px 81px 41px;
+}
+nav h1 {
+  color: #152c61;
+  font-size: 26px;
+  font-weight: 500;
+}
+nav p.user {
+  color: #152c61;
+  font-size: 16px;
+}
+nav p.user a {
+  color: #2c6bff;
+  font-weight: 600;
+  margin-left: 12px;
+}
+.messages_area {
+  background-color: white;
+  height: 75vh;
+  margin-inline: 79px;
+  padding: 76px 68px;
+  overflow: auto;
+  position: relative;
+}
+.messages_area header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+.messages_area header .message_count {
+  color: #707070;
+  font-size: 16px;
+  font-weight: 400;
+}
+.messages_area header .message_count strong {
+  color: #2c6bff;
+  font-weight: 600;
+}
+.messages_area header .create_msg_btn {
+  background-color: #2c6bff;
+  border-radius: 6px;
+  border: none;
+  color: white;
+  font: normal 500 16px/24px Poppins_medium;
+  padding: 12px 40px;
+}
+.messages_area .no_msg_prompt {
+  margin-top: 133px;
+  text-align: center;
+}
+.messages_area .no_msg_prompt.hide {
+  display: none;
+}
+.messages_area .no_msg_prompt img {
+  display: block;
+  margin: 0 auto;
+}
+.messages_area .message_block {
+  background-color: white;
+  border-radius: 6px;
+  border: 1px solid #dce6ff;
+  color: #152c61;
+  display: none;
+  margin-bottom: 19px;
+  padding: 24px 29px;
+}
+.messages_area .message_block.clone {
+  display: block;
+}
+.messages_area .message_block .comment_block {
+  border-radius: 6px;
+  border: 1px solid #dce6ff;
+  margin-top: 18px;
+  padding: 22px 28px;
+}
+.messages_area .message_block .edit_msg_form {
+  display: none;
+}
+.messages_area .message_block .edit_msg_form.show {
+  display: block;
+}
+.messages_area .message_block .edit_msg_form textarea {
+  margin-bottom: 13px;
+}
+.messages_area .message_block .edit_msg_form footer {
+  text-align: end;
+}
+.messages_area .message_block .edit_msg_form .edit_msg_btn {
+  background-color: #2c6bff;
+  border-radius: 6px;
+  border: none;
+  color: white;
+  font-size: 16px;
+  padding: 6.5px 66px;
+  padding-inline: 22px;
+  margin-left: 26px;
+}
+.messages_area .message_block .comment_form {
+  border-radius: 6px;
+  border: 1px solid #dce6ff;
+  display: none;
+  margin-top: 26px;
+  padding: 30px;
+}
+.messages_area .message_block .comment_form.show {
+  display: block;
+}
+.messages_area .message_block .comment_form textarea {
+  margin-bottom: 13px;
+}
+.messages_area .message_block .comment_form button {
+  background-color: #2c6bff;
+  border-radius: 6px;
+  border: none;
+  color: white;
+  font-size: 16px;
+  padding: 6.5px 66px;
+  display: block;
+  margin-left: auto;
+  padding-inline: 31px;
+}
+.messages_area .comment_block {
+  display: none;
+}
+.messages_area .comment_block.clone {
+  display: block;
+}
+.messages_area .comment_block .display_comment.hide {
+  display: none;
+}
+.messages_area .comment_block .edit_comment_form {
+  display: none;
+}
+.messages_area .comment_block .edit_comment_form.show {
+  display: block;
+}
+.messages_area .comment_block .edit_comment_form textarea {
+  margin-bottom: 13px;
+}
+.messages_area .comment_block .edit_comment_form footer {
+  text-align: end;
+}
+.messages_area .comment_block .edit_comment_form .edit_msg_btn {
+  background-color: #2c6bff;
+  border-radius: 6px;
+  border: none;
+  color: white;
+  font-size: 16px;
+  padding: 6.5px 66px;
+  margin-left: 24px;
+  padding-inline: 19px;
+}
+.messages_area .display_msg.hide,
+.messages_area .comment_block.hide {
+  display: none;
+}
+.messages_area .display_msg .actions,
+.messages_area .comment_block .actions {
+  align-items: center;
+  color: #707070;
+  display: flex;
+  margin-top: 18px;
+}
+.messages_area .display_msg .actions .buttons,
+.messages_area .comment_block .actions .buttons {
+  display: flex;
+}
+.messages_area .display_msg .actions button,
+.messages_area .comment_block .actions button {
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  font-weight: 400;
+  color: #707070;
+  margin-right: 27px;
+  display: flex;
+  align-items: center;
+}
+.messages_area .display_msg .actions button span,
+.messages_area .comment_block .actions button span {
+  display: inline-block;
+  margin: 0 8px 2px 0;
+  pointer-events: none;
+}
+.messages_area .display_msg .actions button.comment_btn.has_comment,
+.messages_area .comment_block .actions button.comment_btn.has_comment {
+  color: #2c6bff;
+}
+.messages_area .display_msg .actions button.comment_btn.has_comment span,
+.messages_area .comment_block .actions button.comment_btn.has_comment span {
+  background: url("../images/icons.png") -3px -36px;
+}
+.messages_area .display_msg .actions button.comment_btn strong,
+.messages_area .comment_block .actions button.comment_btn strong {
+  font-size: 16px;
+  font-weight: 400;
+  margin-right: 4px;
+}
+.messages_area .display_msg .actions button.comment_btn span,
+.messages_area .comment_block .actions button.comment_btn span {
+  background: url("../images/icons.png") no-repeat -3px -6px;
+  height: 18px;
+  width: 18px;
+}
+.messages_area .display_msg .actions button.edit_btn,
+.messages_area .comment_block .actions button.edit_btn {
+  color: #2c6bff;
+}
+.messages_area .display_msg .actions button.edit_btn span,
+.messages_area .comment_block .actions button.edit_btn span {
+  background: url("../images/icons.png") no-repeat -31px -4px;
+  height: 22px;
+  margin-bottom: 3px;
+  width: 22px;
+}
+.messages_area .display_msg .actions button.delete_btn span,
+.messages_area .comment_block .actions button.delete_btn span {
+  background: url("../images/icons.png") no-repeat -64px -5px;
+  height: 19px;
+  width: 16px;
+}
+.messages_area .display_msg .actions .message_info,
+.messages_area .comment_block .actions .message_info {
+  align-items: center;
+  display: flex;
+}
+.messages_area .display_msg .actions .message_info img,
+.messages_area .comment_block .actions .message_info img {
+  margin-bottom: 2px;
+  margin-right: 7px;
+}
+.messages_area .display_msg .actions .message_info .posted_by,
+.messages_area .comment_block .actions .message_info .posted_by {
+  display: inline-block;
+  font-weight: 600;
+  margin-right: 4px;
+}
+.messages_area .display_msg .actions .message_info .post_time,
+.messages_area .comment_block .actions .message_info .post_time {
+  display: inline-block;
+  margin-left: 4px;
+}
+.messages_area .create_msg_modal {
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0px 4px 8px 0px #0000000D;
+  display: none;
+  left: calc(50% - 468.25px);
+  padding: 43px 53px;
+  position: absolute;
+  width: 937px;
+}
+.messages_area .create_msg_modal h2 {
+  color: #152c61;
+  font-size: 26;
+  font-weight: 500;
+  margin-bottom: 44px;
+  text-align: center;
+}
+.messages_area .create_msg_modal.show {
+  display: block;
+}
+.messages_area .create_msg_modal textarea {
+  height: 194px;
+  margin-bottom: 23px;
+  width: 100%;
+}
+.messages_area .create_msg_modal .modal_btns_container {
+  text-align: end;
+}
+.messages_area .create_msg_modal .modal_btns_container .post_msg_btn {
+  background-color: #2c6bff;
+  border: none;
+  color: white;
+  font: normal 500 16px/24px Poppins_medium;
+  padding: 12px 40px;
+  border-radius: 6px;
+  margin-left: 20px;
+  padding: 7px 40px;
+}
+.messages_area .create_msg_modal .modal_btns_container .post_msg_btn.disabled {
+  opacity: .5;
+}
+@media screen and (max-width: 986px) {
+  nav {
+    padding: 1.2em 1.8em;
+  }
+  nav p.user {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+  }
+  .messages_area {
+    padding: 1.5em 1.8em;
+  }
+  .messages_area header .create_msg_btn {
+    padding-inline: 13px;
+  }
+  .messages_area .message_block .display_msg .actions {
+    display: grid;
+    grid-template-areas: "post_info" "buttons";
+    margin-top: .7em;
+  }
+  .messages_area .message_block .display_msg .actions .buttons {
+    grid-area: buttons;
+  }
+  .messages_area .message_block .display_msg .actions .message_info {
+    grid-area: post_info;
+    margin-left: -0.3em;
+    margin-bottom: .3em;
+  }
+  .messages_area .comment_block .actions {
+    display: grid;
+    grid-template-areas: "post_info" "buttons";
+    margin-top: .7em;
+  }
+  .messages_area .comment_block .actions .buttons {
+    grid-area: buttons;
+  }
+  .messages_area .comment_block .actions .message_info {
+    grid-area: post_info;
+    margin-left: -0.3em;
+    margin-bottom: .3em;
+  }
+  .messages_area .create_msg_modal {
+    width: 100%;
+    border-radius: 0;
+    left: 0;
+    right: 0;
+  }
+}

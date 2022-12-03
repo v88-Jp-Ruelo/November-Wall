@@ -1,0 +1,326 @@
+@import url(./global.less);
+
+body{
+    background-color: @primary-background-color;
+    display: block;
+}
+
+nav{
+    align-items: center;
+    background-color: @container-background-color;
+    box-shadow: 0px 4px 8px 0px #0000000D;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+    padding: 40px 81px 41px;
+
+    h1{
+        color: @primary-text-color;
+        font: normal 500 26px/39px Poppins_medium;
+    }
+    .user{
+        color: @primary-text-color;
+        font: normal 300 16px/24px Poppins_light;
+        a{
+            color: @primary-color;
+            font-weight: 600;
+            margin-left: 12px;
+        }
+    }
+}
+.messages_area{
+    background-color: @container-background-color;
+    height: 75vh;
+    margin-inline: 79px;
+    padding: 76px 68px;
+    overflow: auto;
+    position: relative;
+
+    header{
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 30px;
+        .message_count{
+            color: #707070;
+            font: normal 400 16px/24px Poppins_Regular;
+            strong{
+                color: @primary-color;
+                font: normal 600 16px/24px Poppins_semiBold;
+            }
+        }
+
+        .create_message_button{
+            .submit_btn();
+        }
+    }
+    .empty_post{
+        margin-top: 133px;
+        &.hide{
+            display: none;
+        }
+        text-align: center;
+        img{
+            display: block;
+            margin: 0 auto;
+        }
+    }
+    .message_block{
+        background-color: @container-background-color;
+        border-radius: 6px;
+        border: @border-color;
+        color: @primary-text-color;
+        display: none;
+        margin-bottom: 19px;
+        padding: 24px 29px;
+        &.clone{
+            display: block;
+        }
+        .comment_block{
+            border-radius: 6px;
+            border: @border-color;
+            margin-top: 18px;
+            padding: 22px 28px;
+        }
+        .edit_message_form{
+            display: none;
+            &.show{
+                display: block;
+            }
+            textarea{
+                margin-bottom: 13px;
+            }
+            footer{
+                text-align: end;
+            }
+            .edit_message_button{
+                .submit_btn();
+                padding-inline: 22px;
+                margin-left: 26px;
+            }
+        }
+        .comment_form{
+            border-radius: 6px;
+            border: @border-color;
+            display: none;
+            margin-top: 26px;
+            padding: 30px;
+            &.show{
+                display: block;
+            }
+            textarea{
+                margin-bottom: 13px;
+            }
+            button{
+                .submit_btn();
+                display: block;
+                margin-left: auto;
+                padding-inline: 31px;
+            }
+        }
+    }
+    .comment_block{
+        display: none;
+        &.clone{
+            display: block;
+        }
+        .display_comment{
+            &.hide{
+                display: none;
+            }
+        }
+        .edit_comment_form{
+            display: none;
+            &.show{
+                display: block;
+            }
+            textarea{
+                margin-bottom: 13px;
+            }
+            footer{
+                text-align: end;
+            }
+            .edit_message_button{
+                .submit_btn();
+                margin-left:24px;
+                padding-inline: 19px;;
+            }
+        }
+    }
+    .display_message, .comment_block{
+        &.hide{
+            display: none;
+        }
+        .actions{
+            align-items: center;
+            color: #707070;
+            display: flex;
+            margin-top: 18px;
+            .buttons{
+                display: flex;
+            }
+            button{
+                .cancel_btn();
+                color: #707070;
+                margin-right: 27px;
+                display: flex;
+                align-items: center;
+                span{
+                    display: inline-block;
+                    margin: 0 8px 2px 0;
+                    pointer-events: none;
+                }
+
+                &.comment_button{
+                    &has_comment{
+                        color: @primary-color;
+                        span{
+                            background: url("../images/icons.png") no-repeat -3px -36px;
+                        }
+                    }
+                    strong{
+                        font: normal 400 16px/24px Poppins_Regular;
+                        margin-right: 4px;
+                    }
+                    span{
+                        background: url("../images/icons.png") no-repeat -3px -6px;
+                        height: 18px;
+                        width: 18px;
+                    }
+                }
+                &.edit_button{
+                    color: @primary-color;
+                    span{
+                        background: url("../images/icons.png") no-repeat -31px -4px;
+                        height: 22px;
+                        margin-bottom: 3px;
+                        width: 22px;
+                    }
+                }
+                &.delete_button{
+                    span{
+                        background: url("../images/icons.png") no-repeat -64px -5px;
+                        height: 19px;
+                        width: 16px;
+                    }
+                }
+            }
+            .message_info{
+                align-items: center;
+                display: flex;
+                img{
+                    margin-bottom: 2px;
+                    margin-right: 7px;
+                }
+                .posted_by{
+                    display: inline-block;
+                    font: normal 600 16px/24px Poppins_semiBold;
+                }
+                .posted_time{
+                    display: inline-block;
+                    margin-left: 4px;
+                }
+            }
+        }
+    }
+    .create_message_modal{
+        background-color: @container-background-color;
+        border-radius: 6px;
+        box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.051);
+        display: none;
+        left:calc(~"50% - 468.25px");
+        padding: 43px 53px;
+        position: absolute;
+        width: 937px;
+
+        h2{
+            color:@primary-text-color;
+            font: normal 500 26px/39px Poppins_medium;
+            margin-bottom: 44px;
+            text-align: center;
+        }
+        &.show{
+            display: block;
+        }
+        textarea{
+            height: 194px;
+            margin-bottom: 23px;
+            width: 100%;
+        }
+        .modal_button_container{
+            text-align: end;
+            .cancel_button{
+                .cancel_btn();
+            }
+            .post_message_button{
+                .submit_btn();
+                border-radius: 6px;
+                margin-left: 20px;
+                padding: 7px 40px;
+                
+                &.disabled{
+                    opacity: .5;
+                }
+            }
+        }
+    }
+}
+@media screen and(max-width: 986){
+    nav{
+        padding: 1.2em 1.8em;
+        p.user{
+            display: flex;
+            flex-direction: column;
+            align-items: end;
+        }
+    }
+    .messages_area{
+        padding: 1.5em 1.8em;
+        
+        header{
+            .create_message_button{
+                padding-inline: 13px;
+            }
+        }
+        .message_block{
+            .display_message{
+                .actions{
+                    display: grid;
+                    grid-template-areas: "post_info" "buttons";
+                    margin-top:.7em;
+
+                    .buttons{
+                        grid-area: buttons;
+                    }
+                    .message_info{
+                        grid-area: "post_info";
+                        margin-left: -.3em;
+                        margin-bottom: .3em;
+                    }
+                }
+            }
+        }
+        .comment_block{
+            .actions{
+                display: grid;
+                grid-template-areas: "post_info" "buttons";
+                margin-top: .7em;
+
+                .buttons{
+                    grid-area: buttons;
+                }
+                .message_info{
+                    grid-area: "post_info";
+                    margin-left: -.3em;
+                    margin-bottom: .3em;
+                }
+            }
+        }
+        .create_message_modal{
+            width: 100%;
+            border-radius: 0;
+            left: 0;
+            right: 0;
+        }
+    }
+}
