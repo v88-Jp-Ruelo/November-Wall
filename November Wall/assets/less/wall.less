@@ -1,326 +1,409 @@
 @import url(./global.less);
 
 body{
-    background-color: @primary-background-color;
+    background-color: @primary_background_color;
     display: block;
-}
+    overflow: hidden;
 
-nav{
-    align-items: center;
-    background-color: @container-background-color;
-    box-shadow: 0px 4px 8px 0px #0000000D;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 50px;
-    padding: 40px 81px 41px;
-
-    h1{
-        color: @primary-text-color;
-        font: normal 500 26px/39px Poppins_medium;
+    /* primary layout buttons that is recyclable in all child */
+    .primary_button{
+        background-color: @primary_color;
+        border-radius: 6px;
+        border: none;
+        color: @white;
+        font: normal 500 16px/24px Poppins_medium;
+        padding: 7px 29px;
     }
-    .user{
-        color: @primary-text-color;
+    .cancel_button{
+        background-color: transparent;
+        border: none;
+        color: #707070;
+        font: normal 400 16px/24px Poppins_medium;
+    }
+    textarea{
+        background-color: @textarea_color;
+        border-radius: 6px;
+        border: @textarea_border_color;
         font: normal 300 16px/24px Poppins_light;
-        a{
-            color: @primary-color;
-            font-weight: 600;
-            margin-left: 12px;
+        padding: 8px 12px;
+        resize: none;
+        width: 100%;
+        color: @primary_text_color;
+    }
+    .icon_layout {
+        display: inline-block;
+        height: 20px;
+        vertical-align: text-top;
+        width: 24px;
+        border: none;
+    }
+    .hide{
+        display: none !important;;
+    }
+    .show{
+        display: block !important;
+    }
+    .disabled{
+        opacity: .5;
+    }
+    .not_editable{
+        form{
+            textarea{
+                background-color: transparent;
+                border: none;
+                padding: 0;
+            }
         }
     }
-}
-.messages_area{
-    background-color: @container-background-color;
-    height: 75vh;
-    margin-inline: 79px;
-    padding: 76px 68px;
-    overflow: auto;
-    position: relative;
+    .editable{
+        form{
+            textarea{
+                background-color: @textarea_color;
+                border: @textarea_border_color;
+                padding: 10px;
+                border-radius: 6px;
+            }
+        }
+    }
+    
 
     header{
         align-items: center;
+        background-color: @white;
+        box-shadow: 0px 4px 8px 0px #0000000D;
         display: flex;
         justify-content: space-between;
-        margin-bottom: 30px;
-        .message_count{
-            color: #707070;
-            font: normal 400 16px/24px Poppins_Regular;
-            strong{
-                color: @primary-color;
-                font: normal 600 16px/24px Poppins_semiBold;
-            }
-        }
+        margin-bottom: 50px;
+        padding: 40px 81px 41px;
 
-        .create_message_button{
-            .submit_btn();
+        h1{
+            color: @primary_text_color;
+            font: normal 500 26px/39px Poppins_medium;
         }
-    }
-    .empty_post{
-        margin-top: 133px;
-        &.hide{
-            display: none;
-        }
-        text-align: center;
-        img{
-            display: block;
-            margin: 0 auto;
-        }
-    }
-    .message_block{
-        background-color: @container-background-color;
-        border-radius: 6px;
-        border: @border-color;
-        color: @primary-text-color;
-        display: none;
-        margin-bottom: 19px;
-        padding: 24px 29px;
-        &.clone{
-            display: block;
-        }
-        .comment_block{
-            border-radius: 6px;
-            border: @border-color;
-            margin-top: 18px;
-            padding: 22px 28px;
-        }
-        .edit_message_form{
-            display: none;
-            &.show{
-                display: block;
-            }
-            textarea{
-                margin-bottom: 13px;
-            }
-            footer{
-                text-align: end;
-            }
-            .edit_message_button{
-                .submit_btn();
-                padding-inline: 22px;
-                margin-left: 26px;
-            }
-        }
-        .comment_form{
-            border-radius: 6px;
-            border: @border-color;
-            display: none;
-            margin-top: 26px;
-            padding: 30px;
-            &.show{
-                display: block;
-            }
-            textarea{
-                margin-bottom: 13px;
-            }
-            button{
-                .submit_btn();
-                display: block;
-                margin-left: auto;
-                padding-inline: 31px;
+        .user{
+            color: @primary_text_color;
+            font: normal 300 16px/24px Poppins_light;
+            a{
+                color: @primary_color;
+                font-weight: 600;
+                margin-left: 12px;
             }
         }
     }
-    .comment_block{
-        display: none;
-        &.clone{
-            display: block;
-        }
-        .display_comment{
-            &.hide{
-                display: none;
-            }
-        }
-        .edit_comment_form{
-            display: none;
-            &.show{
-                display: block;
-            }
-            textarea{
-                margin-bottom: 13px;
-            }
-            footer{
-                text-align: end;
-            }
-            .edit_message_button{
-                .submit_btn();
-                margin-left:24px;
-                padding-inline: 19px;;
-            }
-        }
-    }
-    .display_message, .comment_block{
-        &.hide{
-            display: none;
-        }
-        .actions{
+    .main_section{
+        .create_message_area{
             align-items: center;
-            color: #707070;
             display: flex;
-            margin-top: 18px;
-            .buttons{
-                display: flex;
-            }
-            button{
-                .cancel_btn();
+            justify-content: space-between;
+            margin-bottom: 30px;
+            p{
                 color: #707070;
-                margin-right: 27px;
-                display: flex;
-                align-items: center;
-                span{
-                    display: inline-block;
-                    margin: 0 8px 2px 0;
-                    pointer-events: none;
-                }
-
-                &.comment_button{
-                    &has_comment{
-                        color: @primary-color;
-                        span{
-                            background: url("../images/icons.png") no-repeat -3px -36px;
-                        }
-                    }
-                    strong{
-                        font: normal 400 16px/24px Poppins_Regular;
-                        margin-right: 4px;
-                    }
-                    span{
-                        background: url("../images/icons.png") no-repeat -3px -6px;
-                        height: 18px;
-                        width: 18px;
-                    }
-                }
-                &.edit_button{
-                    color: @primary-color;
-                    span{
-                        background: url("../images/icons.png") no-repeat -31px -4px;
-                        height: 22px;
-                        margin-bottom: 3px;
-                        width: 22px;
-                    }
-                }
-                &.delete_button{
-                    span{
-                        background: url("../images/icons.png") no-repeat -64px -5px;
-                        height: 19px;
-                        width: 16px;
-                    }
-                }
-            }
-            .message_info{
-                align-items: center;
-                display: flex;
-                img{
-                    margin-bottom: 2px;
-                    margin-right: 7px;
-                }
-                .posted_by{
-                    display: inline-block;
+                font: normal 400 16px/24px Poppins_Regular;
+                .message_counter{
+                    color: @primary_color;
                     font: normal 600 16px/24px Poppins_semiBold;
                 }
-                .posted_time{
-                    display: inline-block;
-                    margin-left: 4px;
-                }
+            }
+            #create_message_button{
+                .primary_button();
             }
         }
-    }
-    .create_message_modal{
-        background-color: @container-background-color;
-        border-radius: 6px;
-        box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.051);
-        display: none;
-        left:calc(~"50% - 468.25px");
-        padding: 43px 53px;
-        position: absolute;
-        width: 937px;
-
-        h2{
-            color:@primary-text-color;
-            font: normal 500 26px/39px Poppins_medium;
-            margin-bottom: 44px;
+        .empty_message_container{
+            font: normal 400 16px/24px Poppins_Regular;
+            color: #707070;
             text-align: center;
         }
-        &.show{
-            display: block;
-        }
-        textarea{
-            height: 194px;
-            margin-bottom: 23px;
-            width: 100%;
-        }
-        .modal_button_container{
-            text-align: end;
-            .cancel_button{
-                .cancel_btn();
+    }
+    .create_message_modal,
+    .remove_message,
+    .remove_comment {
+        overflow: hidden;
+        background-color: rgba(0, 0, 0, 0.5);
+        height: 100%;
+        left: 0;
+        position: fixed;
+        text-align: center;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+        .modal_board{
+            background-color: @white;
+            border-radius: 6px;
+            left: 50%;
+            padding: 40px;
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            
+            .close_modal_button{
+                .icon_layout();
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                background: url(../images/icons.png) no-repeat -90px -5px;
             }
-            .post_message_button{
-                .submit_btn();
-                border-radius: 6px;
-                margin-left: 20px;
-                padding: 7px 40px;
-                
-                &.disabled{
-                    opacity: .5;
+            h2{
+                color: @primary_text_color;
+                font: normal 500 26px/49px Poppins_medium;
+                margin: 20px auto 20px auto;
+            }
+            textarea{
+                height: 185px;
+            }
+            p{
+                font: normal 400 16px/24px Poppins_Regular;
+                text-align: center;
+            }
+
+            .modal_buttons{
+                display: flex;
+                justify-content: flex-end;
+                margin-top: 20px;
+                .post_button{
+                    .primary_button();
+                }
+                .cancel_button{
+                    .cancel_button();
+                    position: relative;
+                    right: 40px;
+                }
+            }  
+            .remove_buttons{
+                display: flex;
+                justify-content: center;
+                margin-top: 34px;
+                .delete_button{
+                    .primary_button();
+                    position: relative;
+                    left: 30px
+                }
+                .cancel_button{
+                    .cancel_button();
                 }
             }
+            
+
         }
     }
+
+
 }
-@media screen and(max-width: 986){
-    nav{
-        padding: 1.2em 1.8em;
-        p.user{
-            display: flex;
-            flex-direction: column;
-            align-items: end;
-        }
-    }
-    .messages_area{
-        padding: 1.5em 1.8em;
-        
-        header{
-            .create_message_button{
-                padding-inline: 13px;
-            }
-        }
-        .message_block{
-            .display_message{
-                .actions{
-                    display: grid;
-                    grid-template-areas: "post_info" "buttons";
-                    margin-top:.7em;
+@media screen and (max-width: 4000px){
+    body{
+        width: 100vw;
 
+        .main_section{
+            box-shadow: 0px 4px 8px 0px #0000000D;
+            background-color: @white;
+            height: 75vh;
+            margin-inline: 79px;
+            padding: 76px 68px;
+            .create_message_area{
+                display: flex;
+                justify-content: space-between;
+            }
+            .empty_message_container{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 126px;
+                img{
+                    width: 40px;
+                    justify-content: center;
+                }
+                p{
+                    margin-top: 20px;
+                }
+            }
+            #message_container{
+                .message_item{
+                    border-radius: 6px;
+                    border: @textarea_border_color;
+                    padding: 10px;
+                    margin-top: 10px;
+                    textarea{
+                        min-height: 50px;
+                        font: 300 16px/24px Poppins_light;
+                        .comment_form {
+                            display: block;
+                            textarea{
+                                background-color: @textarea_color;
+                                border-radius: 6px;
+                                border: @textarea_border_color;
+                                font: normal 300 16px/24px Poppins_light;
+                                padding: 8px 12px;
+                                resize: none;
+                                width: 100%;
+                                color: @primary_text_color;
+                            }
+                        }
+                    }
+                    .username{
+                        color: #707070;
+                        margin-left: 15px;
+                        display: inline-block;
+                        a{
+                            color: #707070;
+                            font-weight: 600;
+                        }
+                    }
                     .buttons{
-                        grid-area: buttons;
+                        button{
+                            color: #707070;
+                            font: normal 400 16px/24px Poppins_Regular;
+                            background: transparent;
+                            border: none;
+                            margin-left: 20px;
+                            .comment_icon{
+                                display: inline-block;
+                                height: 20px;
+                                vertical-align: text-top;
+                                width: 24px;
+                                border: none;
+                                &.has_comment{
+                                    background: url(../images/icons.png) no-repeat 0px -33px;
+                                }
+                                &.no_comment{
+                                    background: url(../images/icons.png) no-repeat 0px -3px;
+                                }
+                            }
+                            .edit_icon{
+                                background: url(../images/icons.png) no-repeat -30px -5px;
+                                display: inline-block;
+                                height: 20px;
+                                vertical-align: text-top;
+                                width: 24px;
+                                border: none;
+                            }
+                            .delete_icon{
+                                background: url(../images/icons.png) no-repeat -60px -5px;
+                                display: inline-block;
+                                height: 20px;
+                                vertical-align: text-top;
+                                width: 24px;
+                                border: none;
+                            }
+                        }
+                        
                     }
-                    .message_info{
-                        grid-area: "post_info";
-                        margin-left: -.3em;
-                        margin-bottom: .3em;
-                    }
-                }
-            }
-        }
-        .comment_block{
-            .actions{
-                display: grid;
-                grid-template-areas: "post_info" "buttons";
-                margin-top: .7em;
 
-                .buttons{
-                    grid-area: buttons;
-                }
-                .message_info{
-                    grid-area: "post_info";
-                    margin-left: -.3em;
-                    margin-bottom: .3em;
+
                 }
             }
         }
         .create_message_modal{
-            width: 100%;
-            border-radius: 0;
-            left: 0;
-            right: 0;
+            .modal_board{
+                width: 937px;
+                height: 423px;
+            }
+        }
+        .remove_message,
+        .remove_comment {
+            .modal_board{
+                width: 540px;
+                height: 307px;
+            }
+        }
+    }
+    
+}
+@media screen and (max-width: 900px){
+    body{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        max-height: 100vh;
+        header{
+            width: 100vw;
+            justify-content: space-between;
+            padding: 20px;
+        }
+        .main_section{
+            padding: 0px;
+            min-height: 80vh;
+            margin: 0px;
+            .create_message_area{
+                display: flex;
+                justify-content: space-evenly;
+                width: 90vw;
+                margin-top: 50px;
+                p{
+                    font-size: 18px;
+                }
+            }
+            .empty_message_container{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 90px;
+                font-size: 18px;
+                img{
+                    width: 40px;
+                    justify-content: center;
+                }
+            }
+        }
+        .create_message_modal,
+        .remove_message,
+        .remove_comment {
+            .modal_board{
+                width: 90vw;
+            }
+        }
+        #message_container{
+            width: 100vw;
+            .message_item{
+                margin: 5px 40px;
+            }
+        }
+        
+    }
+}
+@media screen and (max-width: 580px){
+    body{
+        header{
+            width: 100vw;
+            justify-content: space-between;
+            padding: 20px;
+            p{
+                display: flex;
+                flex-direction: column;
+                a{
+                    display: flex;
+                    align-self: flex-end;
+                }
+            }
+        }
+        .main_section{
+            padding: 0px;
+            min-height: 80vh;
+            margin: 0px;
+            .create_message_area{
+                display: flex;
+                text-align: center;
+                flex-direction: column;
+                width: 100vw;
+                margin-top: 50px;
+                p{
+                    font-size: 20px;
+                }
+                button{
+                    align-self: center;
+                    margin-top: 20px;
+                }
+            }
+            .empty_message_container{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 60px;
+                font-size: 18px;
+                img{
+                    width: 50px;
+                    justify-content: center;
+                }
+            }
         }
     }
 }
