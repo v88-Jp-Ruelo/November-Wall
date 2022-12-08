@@ -50,8 +50,8 @@
                 }
             }
             .error_text {
-                font: normal 300 14px/21px Poppins_light;
                 color: @text_error_color;
+                font: normal 300 14px/21px Poppins_light;
             }
             button[type=submit] {
                 background: @primary_color;
@@ -89,26 +89,26 @@
     body{
         width: 100vw;
         .container {
-            width: 60vw;
             height: 100vh;
+            width: 60vw;
         }
         #design-panel{
-            width: 40vw;
             height: 100vh;
+            width: 40vw;
         }
     }
     
 }
 @media screen and (max-width: 900px){
     body{
-        display: flex;
         align-items: center;
-        justify-content: center;
+        display: flex;
         flex-direction: column;
+        justify-content: center;
         max-height: 100vh;
         #design-panel{
-            width: 100vw;
             height: 30vh;
+            width: 100vw;
             img{
                 display: none;
             }
@@ -117,8 +117,8 @@
 }
 @media screen and (max-width: 580px){
     .container {
+        background-color: @primary_background_color;
         width: 100vw;
-       background-color: @primary_background_color;
         form {
             border-radius: 0;
             box-shadow: none;

@@ -84,8 +84,8 @@ button {
   background-color: #fdf1f1;
 }
 .container .login form .error_text {
-  font: normal 300 14px/21px Poppins_light;
   color: #e1554c;
+  font: normal 300 14px/21px Poppins_light;
 }
 .container .login form button[type=submit] {
   background: #2c6bff;
@@ -119,25 +119,25 @@ button {
     width: 100vw;
   }
   body .container {
-    width: 60vw;
     height: 100vh;
+    width: 60vw;
   }
   body #design-panel {
-    width: 40vw;
     height: 100vh;
+    width: 40vw;
   }
 }
 @media screen and (max-width: 900px) {
   body {
-    display: flex;
     align-items: center;
-    justify-content: center;
+    display: flex;
     flex-direction: column;
+    justify-content: center;
     max-height: 100vh;
   }
   body #design-panel {
-    width: 100vw;
     height: 30vh;
+    width: 100vw;
   }
   body #design-panel img {
     display: none;
@@ -145,8 +145,8 @@ button {
 }
 @media screen and (max-width: 580px) {
   .container {
-    width: 100vw;
     background-color: #fbfbfb;
+    width: 100vw;
   }
   .container form {
     border-radius: 0;

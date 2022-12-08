@@ -257,8 +257,8 @@ body .remove_comment .modal_board .remove_buttons .cancel_button {
     max-width: 100vw;
   }
   body header .header_container {
-    max-width: 1280px;
     margin: 0 auto;
+    max-width: 1280px;
   }
   body section {
     padding: 50px 80px;
