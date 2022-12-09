@@ -268,7 +268,7 @@ body .remove_comment .modal_board .remove_buttons .cancel_button {
     box-shadow: 0px 4px 8px 0px #0000000D;
     margin: 0 auto;
     max-width: 1280px;
-    min-height: 75vh;
+    min-height: 85vh;
     padding: 76px 68px;
   }
   body section .main_section .create_message_area {
@@ -449,7 +449,7 @@ body .remove_comment .modal_board .remove_buttons .cancel_button {
     padding: 30px 50px;
   }
   body section .main_section {
-    min-height: 85vh;
+    min-height: 90vh;
     padding: 40px;
   }
   body section .main_section .create_message_area {
