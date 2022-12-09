@@ -12,8 +12,9 @@ const message_counter = document.querySelector('.message_counter');
 const message_container = document.getElementById('message_container');
 const remove_message = document.querySelector('.remove_message');
 const remove_comment = document.querySelector('.remove_comment');
-var previous_message = "";
-var next_previous_message = "";
+var temporary_textarea_value = document.querySelector('.temporary_textarea_value');
+previous_temporary_textarea='';
+
 /* trigger to show create message modal */
 create_message_button.addEventListener('click', function(){
     showElement(create_message_modal);
@@ -59,10 +60,9 @@ for(let index = 0; index < delete_button.length; index++){
 function createMessage(content){
     let cloned_item = message_item.cloneNode(true);
         cloned_item.classList.remove('hide');
-        cloned_item.querySelector('textarea').innerText = content;
-        previous_message = content;
-        next_previous_message = previous_message;
-    let edit_container = cloned_item.querySelector('.edit_container');
+        temporary_textarea_value = content;
+        previous_temporary_textarea = temporary_textarea_value;
+        cloned_item.querySelector('textarea').innerText = temporary_textarea_value;
     let update_button = cloned_item.querySelector('.update_button');
     let edit_form = cloned_item.querySelector('.edit_form');
     let comment_form = cloned_item.querySelector('.comment_form');
@@ -83,40 +83,44 @@ function createMessage(content){
     /* trigger to show editable textarea */
     button_box.querySelector('.edit').addEventListener('click', ()=>{showEdit(button_box,cloned_item)});
 
-    /* trigger when user click update button */
-    update_button.addEventListener('click', function(){updateContent(cloned_item)});
-
     /* trigger to check if textarea in edit form is empty */
     edit_form.querySelector('textarea').addEventListener('keyup', function(event){checkTextArea(event,update_button)});
 
-    /*  trigger when user click cancel while editing, forget all new user input */
-    edit_container.querySelector('.cancel_update_button').addEventListener('click', function(){cancelUpdateContent(cloned_item)});
-        
     message_container.prepend(cloned_item);
     messageCounter();
 }
 
-function cancelUpdateContent(textarea_value){
-    let edit_textarea_form = textarea_value.querySelector('.edit_form textarea');
-    hideElement(textarea_value.querySelector('.edit_container'));
-    showElement(textarea_value.querySelector('.buttons'));
-    previous_message = next_previous_message;
-    edit_textarea_form.value = previous_message;
-    textarea_value.classList.add('not_editable');
-    textarea_value.classList.remove('editable');
-    edit_textarea_form.disabled = true; 
-}
-function updateContent(textarea_value){
-    let edit_textarea_form = textarea_value.querySelector('.edit_form textarea');
-    if(edit_textarea_form.value.length > 0){
-        hideElement(textarea_value.querySelector('.edit_container'));
-        showElement(textarea_value.querySelector('.buttons'));
-        next_previous_message = edit_textarea_form.value;
-        console.log(next_previous_message);
-        textarea_value.classList.add('not_editable');
-        textarea_value.classList.remove('editable');
-        edit_textarea_form.disabled = true;
+function showEdit(button_box,content){
+    let class_List = content.classList;
+    let textarea = content.querySelector('textarea');
+    let edit_container = content.querySelector('.edit_container');
+    if(class_List.contains('not_editable')){
+        hideElement(button_box);
+        showElement(edit_container);
+        content.classList.add('editable');
+        content.classList.remove('not_editable');
+        textarea.disabled = false;
     }
+    /* event listener when cancel update is click */
+    edit_container.querySelector('.cancel_update_button').addEventListener('click', function(){
+        temporary_textarea_value = previous_temporary_textarea;
+        textarea.value = temporary_textarea_value;
+        showButtonContainer(content, textarea);
+    });
+    /* event listener when update button is click */
+    edit_container.querySelector('.update_button').addEventListener('click', function(){
+        previous_temporary_textarea = textarea.value;
+        showButtonContainer(content, textarea);
+    });
+    
+}
+
+function showButtonContainer(content, textarea){
+    hideElement(content.querySelector('.edit_container'));
+    showElement(content.querySelector('.buttons'));
+    content.classList.add('not_editable');
+    content.classList.remove('editable');
+    textarea.disabled = true;
 }
 
 function messageCounter(){
@@ -203,14 +207,11 @@ function addComment(event){
     let comment_clone = comment_item.cloneNode(true);
     const button_box = comment_clone.querySelector('.buttons');
     const edit_form = comment_clone.querySelector('.edit_form');
-    const edit_container = comment_clone.querySelector('.edit_container');
     const update_button = comment_clone.querySelector('.update_button');
 
     comment_clone.querySelector('form textarea').value = comment_form_textarea.value;
     comment_clone.querySelector('.delete').addEventListener('click', function(){removeComment(comment_clone)});
     comment_clone.querySelector('.edit').addEventListener('click', function(){showEdit(button_box,comment_clone)});
-    edit_container.querySelector('.update_button').addEventListener('click', ()=>updateContent(comment_clone));
-    edit_container.querySelector('.cancel_update_button').addEventListener('click', ()=>cancelUpdateContent(comment_clone));
     edit_form.querySelector('textarea').addEventListener('keyup', (event)=>checkTextArea(event, update_button));
 
     resetValue(post_comment_button,comment_form_textarea);
@@ -218,16 +219,4 @@ function addComment(event){
     showElement(comment_container);
     comment_container.prepend(comment_clone);
     commentCounter(selected_message);
-}
-function showEdit(button_box,content){
-    let class_item = content.classList;
-    let textarea = content.querySelector('textarea');
-    let edit_container = content.querySelector('.edit_container');
-    if(class_item.contains('not_editable')){
-        hideElement(button_box);
-        showElement(edit_container);
-        content.classList.add('editable');
-        content.classList.remove('not_editable');
-        textarea.disabled = false;
-    }
 }
