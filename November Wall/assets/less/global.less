@@ -1,19 +1,14 @@
-@font-face {
-    font-family: Poppins_Regular;
-    src: url(../fonts/Poppins-Regular.ttf);
-}
-@font-face {
-    font-family: Poppins_semiBold;
-    src: url(../fonts/Poppins-SemiBold.ttf);
-}
-@font-face {
-    font-family: Poppins_light;
-    src: url(../fonts/Poppins-Light.ttf);
-}
-@font-face {
-    font-family: Poppins_medium;
-    src: url(../fonts/Poppins-Medium.ttf);
-}
+@input_background_color: #eef3ff;
+@input_error_background_color: #fdf1f1;
+@primary_background_color: #fbfbfb;
+@primary_color: #2c6bff;
+@primary_text_color: #152c61;
+@right_panel_color: #86a7f2;
+@secondary_text_color: #cccccc;
+@text_error_color: #e1554c;
+@textarea_border_color: 1px solid #dce6ff;
+@textarea_color: #f5f8ff;
+@white: #ffffff;
 
 /* normalize css */
 * {
@@ -28,56 +23,25 @@ a {
 }
 body {
     align-self: center;
-    background-color: @primary-background-color;
+    background-color: @primary_background_color;
     display: flex;
-    height: 100vh;
-    width: 1440px;
-}
-
-.submit_btn{
-    background-color: @primary-color;
-    border-radius: 6px;
-    border: none;
-    color: white;
-    font: normal 500 16px/24px Poppins_medium;
-    padding: 12px 40px;
-}
-.cancel_btn {
-    background-color: transparent;
-    border: none;
-    color: #707070;
-    font: normal 400 16px/24px Poppins_medium;
-}
-textarea {
-    background-color: @textarea-color;
-    border-radius: 6px;
-    border: @border-color;
-    font: normal 300 16px/24px Poppins_light;
-    padding: 8px 12px;
-    resize: none;
-    width: 100%;
 }
 button {
     cursor: pointer;
 }
-.close_modal_button {
-    background: url(../images/icons.png) no-repeat -93px -6px;
-    border: none;
-    height: 18px;
-    position: absolute;
-    right: 19px;
-    top: 18px;
-    width: 18px;
+@font-face {
+    font-family: Poppins_light;
+    src: url(../fonts/Poppins-Light.ttf);
 }
-
-@border-color: 1px solid #dce6ff;
-@container-background-color: #ffffff;
-@input-background-color: #eef3ff;
-@input-error-background-color: #fdf1f1;
-@primary-background-color: #fbfbfb;
-@primary-color: #2c6bff;
-@primary-text-color: #152c61;
-@right-panel-color: #86a7f2;
-@secondary-text-color: #cccccc;
-@text-error-color: #e1554c;
-@textarea-color: #f5f8ff;
+@font-face {
+    font-family: Poppins_Regular;
+    src: url(../fonts/Poppins-Regular.ttf);
+}
+@font-face {
+    font-family: Poppins_medium;
+    src: url(../fonts/Poppins-Medium.ttf);
+}
+@font-face {
+    font-family: Poppins_semiBold;
+    src: url(../fonts/Poppins-SemiBold.ttf);
+}

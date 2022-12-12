@@ -6,54 +6,55 @@
     justify-content: center;
     width: 857px;
     .login {
-        background-color: @container-background-color;
+        background-color: @white;
         border-radius: 6px;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
         width: 450px;
 
         form {
-            color: @primary-text-color;
+            color: @primary_text_color;
             display: flex;
             flex-direction: column;
             padding: 40px;
             h1 {
-                color: @primary-color;
+                color: @primary_color;
                 font: normal 600 22px Poppins_semiBold;
             }
             h2 {
-                color: @primary-text-color;
+                color: @primary_text_color;
                 font: normal 600 40px Poppins_semiBold;
                 margin-top: 39px;
             }
             label {
-                color: @primary-text-color;
+                color: @primary_text_color;
+                display: flex;
                 font: normal 300 16px/24px Poppins_light;
+                justify-content: space-between;
                 margin-top: 22px;
                 a {
                     color: rgba(0, 0, 0, 0.5);
-                    float: right;
                     font: normal 300 14px Poppins_light;
                     margin-top: 2px;
                 }
             }
             input {
-                background:@input-background-color;
+                background:@input_background_color;
                 border-radius: 4px;
                 border: none;
-                color: @primary-text-color;
+                color: @primary_text_color;
                 font: normal 400 14px/21px Poppins_Regular;
                 margin: 5px 0px;
                 padding: 14px 9px;
                 &.error_input {
-                    background-color: @input-error-background-color;
+                    background-color: @input_error_background_color;
                 }
             }
             .error_text {
+                color: @text_error_color;
                 font: normal 300 14px/21px Poppins_light;
-                color: @text-error-color;
             }
             button[type=submit] {
-                background: @primary-color;
+                background: @primary_color;
                 border-radius: 4px;
                 border: none;
                 color: white;
@@ -63,11 +64,12 @@
                 width: 136px;
             }
             .is_registered {
-                color: @secondary-text-color;
+                color: @secondary_text_color;
                 font: normal 400 16px/22px Poppins_Regular;
                 text-align: center;
                 a {
-                    color: @primary-color;
+                    color: @primary_color;
+                    font: normal 400 16px/22px Poppins_Regular;
                 }
             }
         }
@@ -75,7 +77,7 @@
 }
 
 #design-panel {
-    background-color: @right-panel-color;
+    background-color: @right_panel_color;
     width: 600px;
     img {
         position: relative;
@@ -84,22 +86,47 @@
     }
 }
 
-@media screen and (max-width: 1236px){
-    .container {
-        width: 100%;
+@media screen and (max-width: 4000px){
+    body{
+        width: 100vw;
+        .container {
+            height: 100vh;
+            width: 60vw;
+        }
+        #design-panel{
+            height: 100vh;
+            width: 40vw;
+        }
     }
-    #design-panel {
-        display: none;
+    
+}
+@media screen and (max-width: 900px){
+    body{
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        max-height: 100vh;
+        #design-panel{
+            height: 30vh;
+            width: 100vw;
+            img{
+                display: none;
+            }
+        }
     }
 }
-
-@media screen and (max-width: 520px){
+@media screen and (max-width: 580px){
     .container {
-       background-color: white;
+        background-color: @primary_background_color;
+        width: 100vw;
         form {
             border-radius: 0;
             box-shadow: none;
             width: 100%;
         }
+    }
+    #design-panel {
+        display: none;
     }
 }

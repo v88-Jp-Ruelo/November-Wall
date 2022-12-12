@@ -3,18 +3,14 @@ const email_input = document.querySelector(".login_form .email_input");
 const password_input = document.querySelector(".login_form .password_input");
 const email_error = document.querySelector(".login_form .error_email");
 const password_error = document.querySelector(".login_form .error_password");
-
 const user ={
     email: "jeypsruelo@gmail.com",
     password: "paolo12321"
 }
 
-const isValidEmail = email => {
-    const email_testcase = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return email_testcase.test(String(email).toLowerCase());
-}
+login_form.addEventListener("submit", (event) => {loginValidator(event)});
 
-login_form.addEventListener("submit", (event) => {
+function loginValidator(event){
     event.preventDefault();
 
     if(!email_input.value){
@@ -43,4 +39,4 @@ login_form.addEventListener("submit", (event) => {
     if(email_input.value === user.email && password_input.value === user.password) {
         location.href = "wall.html";
     }
-});
+}

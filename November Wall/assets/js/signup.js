@@ -2,17 +2,13 @@ const signup_form = document.querySelector(".signup_form");
 const email_input = document.querySelector(".signup_form .email_input");
 const password_input = document.querySelector(".signup_form .password_input");
 const confirm_password_input = document.querySelector(".signup_form .confirm_password_input");
-
 const email_error = document.querySelector(".signup_form .error_email");
 const password_error = document.querySelector(".signup_form .error_password");
 const confirm_password_error = document.querySelector(".signup_form .error_confirm_password");
 
-const isValidEmail = email => {
-    const email_testcase = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return email_testcase.test(String(email).toLowerCase());
-}
+signup_form.addEventListener("submit", (event) => {registrationValidator(event)});
 
-signup_form.addEventListener("submit", (event) => {
+function registrationValidator (event){
     event.preventDefault();
     /*email validation */
     if(!email_input.value){
@@ -44,4 +40,4 @@ signup_form.addEventListener("submit", (event) => {
     if(email_input.value && password_input.value && confirm_password_input.value && (password_input.value === confirm_password_input.value)) {
         location.href = "wall.html";
     }
-});
+}

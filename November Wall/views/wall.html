@@ -6,98 +6,139 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Dashboard of the wall assignment">
     <meta name="author" content="John Paolo Ruelo">
+    <link rel="icon" type="image/x-icon" href="../assets/images/15608-200.png">
     <link rel="stylesheet" href="../assets/css/wall.css">
     <title>Dashboard</title>
 </head>
 <body>
-    <nav>
-        <h1>The Wall Assignment</h1>
-        <p class="user">Welcome, Jp Ruelo! <a href="index.html" class="logout">Logout</a></p>
-    </nav>
-    <div class="messages_area">
-        <header>
-            <p class="message_count"><strong></strong> messages arranged by latest posted</p>
-            <button type="button" class="create_msg_btn">Create Message</button>
-        </header>
-
-        <!-- modal to create a message -->
-        <form class="create_msg_modal">
-            <button type="button" class="close_modal_btn"></button>
-            <h2>Create a Message</h2>
-            <textarea placeholder="Type your message here."></textarea>
-            <footer class="modal_btns_container">
-                <button type="button" class="cancel_btn">Cancel</button>
-                <button type="submit" class="post_msg_btn disabled">Post message</button>
-            </footer>
+    <header>
+        <div class="header_container">
+            <h1>The Wall Assignment</h1>
+            <p class="user">
+                Welcome, Jp Ruelo! 
+                <a href="index.html" class="logout">Logout</a>
+            </p>
+        </div>
+    </header>
+    <section>
+        <div class="main_section">
+            <div class="create_message_area">
+                <p><span class="message_counter">0</span> messages arranged by latest posted</p>
+                <button type="submit" id="create_message_button">Create Message</button>
+            </div>
+    
+            <div class="empty_message_container show">
+                <img src="../assets/images/empty_Icon.png" alt="Empty message icon">
+               <p>No Posted Message Yet.</p>
+            </div>
+    
+            <ul id="message_container">
+                <!-- messages form -->
+                <li class="message_item hide not_editable" data-message-id="">
+                    <form class="edit_form">
+                        <textarea disabled></textarea>
+                    </form>
+                    <div class="buttons">
+                        <button type="button" class="comment">
+                            <span class="comment_icon no_comment"></span>
+                            <span class="comment_counter">0</span> 
+                            comment
+                        </button>
+                        <button type="button" class="edit colored">
+                            <span class="edit_icon"></span>
+                            Edit
+                        </button>
+                        <button type="button" class="delete">
+                            <span class="delete_icon"></span>
+                            Delete
+                        </button>
+                        <button type="button" class="user">
+                            <span class="user_icon"></span>
+                            <span class="username">You</span> 
+                            - Few seconds ago
+                        </button>
+                    </div>
+                    <div class="edit_container hide">
+                        <button type="button" class="cancel_update_button">Cancel</button>
+                        <button type="button" class="update_button">Update Message</button>
+                    </div>
+    
+                    <form class="comment_form hide">
+                        <textarea placeholder="Type your comment here."></textarea>
+                        <button disabled class="post_comment_button disabled" type="submit">Post Comment</button>
+                    </form>
+                    <div class="comment_container hide">
+                    </div>
+                </li>
+                <!-- comments form -->
+                <li class="comment_item hide not_editable" data-comment-id>
+                    <form class="edit_form">
+                        <textarea disabled></textarea>
+                    </form>
+                    <div class="buttons">
+                        <button type="button" class="edit colored">
+                            <span class="edit_icon"></span>
+                            Edit
+                        </button>
+                        <button type="button" class="delete">
+                            <span class="delete_icon"></span>
+                            Delete
+                        </button>
+                        <button type="button" class="user">
+                            <span class="user_icon"></span>
+                            <span class="username">You</span> 
+                            - Few seconds ago
+                        </button>
+                    </div>
+                    <form class="edit_container hide">
+                        <button type="button" class="cancel_update_button">Cancel</button>
+                        <button type="button" class="update_button">Update Comment</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    
+        <!-- modals -->
+        <form class="create_message_modal hide">
+            <div class="modal_board">
+                <button type="button" class="close_modal_button close_modal"></button>
+                <h2>Create a Message</h2>
+                <textarea class="new_message_textarea" placeholder="Type your message here."></textarea>
+                <footer class="modal_buttons">
+                    <button type="button" class="cancel_button close_modal">Cancel</button>
+                    <button disabled type="submit" class="post_button disabled">Post message</button>
+                </footer>
+            </div>
         </form>
 
-        <!-- will prompt if there's no message -->
-        <div class="no_msg_prompt">
-            <img src="../assets/images/empty_Icon.png" alt="Empty message icon">
-            No Posted Message Yet.
-        </div>
+        <form class="remove_message delete hide">
+            <div class="modal_board">
+                <input type="hidden" name="message_id" value="">
+                <button type="button" class="close_modal_button close_modal"></button>
+                <h2>Confirm Delete Message</h2>
+                <p>Are you sure you want to remove this message ?</p>
+                <p>This action cannot be undone.</p>
+                <footer class="remove_buttons">
+                    <button type="button" class="cancel_button close_modal">Cancel</button>
+                    <button type="button" class="delete_button">Yes, Remove it.</button>
+                </footer>
+            </div>
+        </form>
 
-        <div class="messages_container">
-            <!-- to be cloned -->
-            <div class="message_block">
-                <!-- for displaying the message -->
-                <div class="display_msg">
-                    <p class="message_body">daniel</p>
-                    <footer class="actions">
-                        <div class="buttons">
-                            <button type="button" class="comment_btn"><span></span><strong class="comment_count">0</strong>Comment</button>
-                            <button type="button" class="edit_btn"><span></span>Edit</button>
-                            <button type="button" class="delete_btn"><span></span>Delete</button>
-                        </div>
-                        <div class="message_info">
-                            <img src="../assets/images/user-icon.png" alt="User icon">
-                            <span class="posted_by">You</span> - 
-                            <span class="post_time">Few seconds ago</span>
-                        </div>
-                    </footer>
-                </div>
-                <!-- for displaying the edit message form -->
-                <form class="edit_msg_form">
-                    <textarea></textarea>
-                    <footer>
-                        <button type="button" class="cancel_btn">Cancel</button>
-                        <button type="submit" class="edit_msg_btn">Update Message</button>
-                    </footer>
-                </form>
-                <form class="comment_form">
-                    <textarea></textarea>
-                    <button class="post_comment_btn">Post Comment</button>
-                </form>
-                <div class="comments"></div>
-            </div>
-        </div>
-        <!-- to be cloned -->
-        <div class="comment_block">
-            <div class="display_comment">
-                <p class="comment_body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis possimus nisi placeat maxime impedit ullam autem sint voluptatibus deleniti modi.</p>
-                <footer class="actions">
-                    <div class="buttons">
-                        <button type="button" class="edit_btn"><span></span>Edit</button>
-                        <button type="button" class="delete_btn"><span></span>Delete</button>
-                    </div>
-                    <div class="message_info">
-                        <span class="posted_by">You</span> - 
-                        <span class="post_time">Few seconds ago</span>
-                    </div>
+        <form class="remove_comment hide">
+            <div class="modal_board">
+                <input type="hidden" name="comment_id" value="">
+                <button type="button" class="close_modal_button close_modal"></button>
+                <h2>Confirm Delete Comment</h2>
+                <p>Are you sure you want to remove this message ?</p>
+                <p>This action cannot be undone.</p>
+                <footer class="remove_buttons">
+                    <button type="button" class="cancel_button close_modal">Cancel</button>
+                    <button type="button" class="delete_button">Yes, Remove it.</button>
                 </footer>
             </div>
-            <!-- for displaying the edit comment form -->
-            <form class="edit_comment_form">
-                <textarea></textarea>
-                <footer>
-                    <button type="button" class="cancel_btn">Cancel</button>
-                    <button type="submit" class="edit_msg_btn">Update Comment</button>
-                </footer>
-            </form>
-        </div>
-    </div>
-    
-    <script src="../assets/js/global.js"></script>
+        </form>
+    </section>
     <script src="../assets/js/wall.js"></script>
 </body>
 </html>
