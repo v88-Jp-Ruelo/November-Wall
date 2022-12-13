@@ -1,13 +1,19 @@
-const signup_form = document.querySelector(".signup_form");
+/* Variables for Signup page */
+
+/* Input fields */
 const email_input = document.querySelector(".signup_form .email_input");
 const password_input = document.querySelector(".signup_form .password_input");
 const confirm_password_input = document.querySelector(".signup_form .confirm_password_input");
+
+/* Error messages field*/
 const email_error = document.querySelector(".signup_form .error_email");
 const password_error = document.querySelector(".signup_form .error_password");
 const confirm_password_error = document.querySelector(".signup_form .error_confirm_password");
 
-signup_form.addEventListener("submit", (event) => {registrationValidator(event)});
+/* Event listener when the user click 'Sign up' button */
+document.querySelector(".signup_form").addEventListener("submit", (event) => {registrationValidator(event)});
 
+/* Triggered when user submitted the form/clicked 'Sign up' button */
 function registrationValidator (event){
     event.preventDefault();
     /*email validation */

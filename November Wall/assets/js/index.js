@@ -1,15 +1,26 @@
+/* Variables */
+
+/* form */
 const login_form = document.querySelector(".login_form");
+
+/* Input fields */
 const email_input = document.querySelector(".login_form .email_input");
 const password_input = document.querySelector(".login_form .password_input");
+
+/* Error messages field*/
 const email_error = document.querySelector(".login_form .error_email");
 const password_error = document.querySelector(".login_form .error_password");
+
+/* Login credential */
 const user ={
     email: "jeypsruelo@gmail.com",
     password: "paolo12321"
 }
 
+/* Event listener when the user click 'Sign in' button */
 login_form.addEventListener("submit", (event) => {loginValidator(event)});
 
+/* Triggered when user submitted the form/clicked 'Sign in' button */
 function loginValidator(event){
     event.preventDefault();
 

@@ -323,15 +323,14 @@ body .remove_comment .modal_board .remove_buttons .cancel_button {
   body section .main_section #message_container .message_item .message_content p {
     color: #152c61;
     font: normal 300 16px/24px Poppins_light;
-    margin: 0px 0px 19px 10px;
+    margin: 0px 0px 20px 6px;
   }
   body section .main_section #message_container .message_item .buttons button {
     background: transparent;
     border: none;
     color: #707070;
     font: normal 400 16px/24px Poppins_Regular;
-    margin-right: 30px;
-    padding-left: 10px;
+    margin-right: 25px;
   }
   body section .main_section #message_container .message_item .buttons button .comment_icon {
     border: none;
@@ -468,7 +467,7 @@ body .remove_comment .modal_board .remove_buttons .cancel_button {
   body .create_message_modal .modal_board,
   body .remove_message .modal_board,
   body .remove_comment .modal_board {
-    width: 90vw;
+    width: 70vw;
   }
 }
 @media screen and (max-width: 635px) {
@@ -511,5 +510,8 @@ body .remove_comment .modal_board .remove_buttons .cancel_button {
   body section .main_section .empty_message_container img {
     justify-content: center;
     width: 50px;
+  }
+  body .modal .modal_board {
+    width: 90vw;
   }
 }
