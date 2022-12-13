@@ -1,0 +1,34 @@
+/* normalize css */
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  margin: 0px;
+  padding: 0px;
+}
+a {
+  text-decoration: none;
+}
+body {
+  align-self: center;
+  background-color: #fbfbfb;
+  display: flex;
+}
+button {
+  cursor: pointer;
+}
+@font-face {
+  font-family: Poppins_light;
+  src: url(../fonts/Poppins-Light.ttf);
+}
+@font-face {
+  font-family: Poppins_Regular;
+  src: url(../fonts/Poppins-Regular.ttf);
+}
+@font-face {
+  font-family: Poppins_medium;
+  src: url(../fonts/Poppins-Medium.ttf);
+}
+@font-face {
+  font-family: Poppins_semiBold;
+  src: url(../fonts/Poppins-SemiBold.ttf);
+}
