@@ -59,12 +59,12 @@
                     </button>
                 </div>
                 <form class="edit_container hide">
-                    <textarea class="edit_textarea" name="edit_textarea"></textarea>   
+                    <textarea class="edit_textarea"></textarea>   
                     <button type="button" class="cancel_update_button">Cancel</button>
                     <button type="submit" class="update_button">Update Message</button>
                 </form>
                 <form class="comment_form hide">
-                    <textarea placeholder="Type your comment here." name="comment_form_textarea" class="comment_form_textarea"></textarea>
+                    <textarea placeholder="Type your comment here." class="comment_form_textarea"></textarea>
                     <button disabled class="post_comment_button disabled" type="submit">Post Comment</button>
                 </form>
                 <ul class="comment_container hide">
@@ -92,7 +92,7 @@
                     </button>
                 </div>
                 <form class="edit_container hide">
-                    <textarea class="edit_textarea" name="edit_textarea"></textarea>
+                    <textarea class="edit_textarea"></textarea>
                     <button class="cancel_update_button" type="button">Cancel</button>
                     <button class="update_button" type="submit">Update Comment</button>
                 </form>
@@ -115,7 +115,7 @@
 
         <div class="remove_message modal hide">
             <form class="modal_board">
-                <input type="hidden" name="message_id" value="">
+                <input type="hidden" value="">
                 <button class="close_modal_button close_modal" type="button"></button>
                 <h2>Confirm Delete Message</h2>
                 <p>Are you sure you want to remove this message ?</p>
@@ -129,7 +129,7 @@
 
         <div class="remove_comment modal hide">
             <form class="modal_board">
-                <input type="hidden" name="comment_id" value="">
+                <input type="hidden" value="">
                 <button class="close_modal_button close_modal" type="button"></button>
                 <h2>Confirm Delete Comment</h2>
                 <p>Are you sure you want to remove this message ?</p>
