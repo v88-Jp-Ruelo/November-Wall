@@ -23,7 +23,7 @@
     <section>
         <div class="main_section">
             <div class="create_message_area">
-                <p><span class="message_counter">0</span> messages arranged by latest posted</p>
+                <p><span id="message_counter">0</span> messages arranged by latest posted</p>
                 <button type="submit" id="create_message_button">Create Message</button>
             </div>
     
@@ -34,110 +34,112 @@
     
             <ul id="message_container">
                 <!-- messages form -->
-                <li class="message_item hide not_editable" data-message-id="">
-                    <form class="edit_form">
-                        <textarea disabled></textarea>
-                    </form>
-                    <div class="buttons">
-                        <button type="button" class="comment">
-                            <span class="comment_icon no_comment"></span>
-                            <span class="comment_counter">0</span> 
-                            comment
-                        </button>
-                        <button type="button" class="edit colored">
-                            <span class="edit_icon"></span>
-                            Edit
-                        </button>
-                        <button type="button" class="delete">
-                            <span class="delete_icon"></span>
-                            Delete
-                        </button>
-                        <button type="button" class="user">
-                            <span class="user_icon"></span>
-                            <span class="username">You</span> 
-                            - Few seconds ago
-                        </button>
-                    </div>
-                    <div class="edit_container hide">
-                        <button type="button" class="cancel_update_button">Cancel</button>
-                        <button type="button" class="update_button">Update Message</button>
-                    </div>
-    
-                    <form class="comment_form hide">
-                        <textarea placeholder="Type your comment here."></textarea>
-                        <button disabled class="post_comment_button disabled" type="submit">Post Comment</button>
-                    </form>
-                    <div class="comment_container hide">
-                    </div>
-                </li>
-                <!-- comments form -->
-                <li class="comment_item hide not_editable" data-comment-id>
-                    <form class="edit_form">
-                        <textarea disabled></textarea>
-                    </form>
-                    <div class="buttons">
-                        <button type="button" class="edit colored">
-                            <span class="edit_icon"></span>
-                            Edit
-                        </button>
-                        <button type="button" class="delete">
-                            <span class="delete_icon"></span>
-                            Delete
-                        </button>
-                        <button type="button" class="user">
-                            <span class="user_icon"></span>
-                            <span class="username">You</span> 
-                            - Few seconds ago
-                        </button>
-                    </div>
-                    <form class="edit_container hide">
-                        <button type="button" class="cancel_update_button">Cancel</button>
-                        <button type="button" class="update_button">Update Comment</button>
-                    </form>
-                </li>
+            <li class="message_item hide" data-message-id="">
+                <div class="message_content">
+                    <p></p>
+                </div>
+                <div class="buttons">
+                    <button type="button" class="comment">
+                        <span class="comment_icon no_comment"></span>
+                        <span class="comment_counter"> 0</span> 
+                        comment
+                    </button>
+                    <button type="button" class="edit colored">
+                        <span class="edit_icon"></span>
+                        Edit
+                    </button>
+                    <button type="button" class="delete">
+                        <span class="delete_icon"></span>
+                        Delete
+                    </button>
+                    <button type="button" class="user">
+                        <span class="user_icon"></span>
+                        <span class="username">You</span>
+                         - Few seconds ago
+                    </button>
+                </div>
+                <form class="edit_container hide">
+                    <textarea class="edit_textarea" name="edit_textarea"></textarea>   
+                    <button type="button" class="cancel_update_button">Cancel</button>
+                    <button type="submit" class="update_button">Update Message</button>
+                </form>
+                <form class="comment_form hide">
+                    <textarea placeholder="Type your comment here." name="comment_form_textarea" class="comment_form_textarea"></textarea>
+                    <button disabled class="post_comment_button disabled" type="submit">Post Comment</button>
+                </form>
+                <ul class="comment_container hide">
+                </ul>
+            </li>
+
+            <!-- comments form -->
+            <li class="comment_item hide" data-comment-id="">
+                <div class="message_content">
+                    <p></p>
+                </div>
+                <div class="buttons">
+                    <button type="button" class="edit colored">
+                        <span class="edit_icon"></span>
+                        Edit
+                    </button>
+                    <button type="button" class="delete">
+                        <span class="delete_icon"></span>
+                        Delete
+                    </button>
+                    <button type="button" class="user">
+                        <span class="user_icon"></span>
+                        <span class="username">You</span>
+                         - Few seconds ago
+                    </button>
+                </div>
+                <form class="edit_container hide">
+                    <textarea class="edit_textarea" name="edit_textarea"></textarea>
+                    <button class="cancel_update_button" type="button">Cancel</button>
+                    <button class="update_button" type="submit">Update Comment</button>
+                </form>
+            </li>
             </ul>
         </div>
-    
+
         <!-- modals -->
-        <form class="create_message_modal hide">
-            <div class="modal_board">
+        <div class="create_message_modal modal hide">
+            <form class="modal_board">
                 <button type="button" class="close_modal_button close_modal"></button>
                 <h2>Create a Message</h2>
                 <textarea class="new_message_textarea" placeholder="Type your message here."></textarea>
-                <footer class="modal_buttons">
+                <div class="modal_buttons">
                     <button type="button" class="cancel_button close_modal">Cancel</button>
-                    <button disabled type="submit" class="post_button disabled">Post message</button>
-                </footer>
-            </div>
-        </form>
+                    <button type="submit" class="post_button disabled" disabled>Post message</button>
+                </div>
+            </form>
+        </div>
 
-        <form class="remove_message delete hide">
-            <div class="modal_board">
+        <div class="remove_message modal hide">
+            <form class="modal_board">
                 <input type="hidden" name="message_id" value="">
-                <button type="button" class="close_modal_button close_modal"></button>
+                <button class="close_modal_button close_modal" type="button"></button>
                 <h2>Confirm Delete Message</h2>
                 <p>Are you sure you want to remove this message ?</p>
                 <p>This action cannot be undone.</p>
-                <footer class="remove_buttons">
-                    <button type="button" class="cancel_button close_modal">Cancel</button>
-                    <button type="button" class="delete_button">Yes, Remove it.</button>
-                </footer>
-            </div>
-        </form>
+                <div class="remove_buttons">
+                    <button class="cancel_button close_modal" type="button">Cancel</button>
+                    <button class="delete_button" type="submit">Yes, Remove it.</button>
+                </div>
+            </form>
+        </div>
 
-        <form class="remove_comment hide">
-            <div class="modal_board">
+        <div class="remove_comment modal hide">
+            <form class="modal_board">
                 <input type="hidden" name="comment_id" value="">
-                <button type="button" class="close_modal_button close_modal"></button>
+                <button class="close_modal_button close_modal" type="button"></button>
                 <h2>Confirm Delete Comment</h2>
                 <p>Are you sure you want to remove this message ?</p>
                 <p>This action cannot be undone.</p>
-                <footer class="remove_buttons">
-                    <button type="button" class="cancel_button close_modal">Cancel</button>
-                    <button type="button" class="delete_button">Yes, Remove it.</button>
-                </footer>
-            </div>
-        </form>
+                <div class="remove_buttons">
+                    <button class="cancel_button close_modal" type="button">Cancel</button>
+                    <button class="delete_button" type="submit">Yes, Remove it.</button>
+                </div>
+            </form>
+        </div>
     </section>
     <script src="../assets/js/wall.js"></script>
 </body>

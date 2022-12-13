@@ -96,7 +96,7 @@ body{
             p{
                 color: #707070;
                 font: normal 400 16px/24px Poppins_Regular;
-                .message_counter{
+                #message_counter{
                     color: @primary_color;
                     font: normal 600 16px/24px Poppins_semiBold;
                 }
@@ -257,9 +257,11 @@ body{
                             }
                         }
 
-                        .edit_form{
-                            textarea{
-                                padding:10px 0px 0px 10px;
+                        .message_content{
+                            p{
+                                color: #152c61;
+                                font: normal 300 16px/24px Poppins_light;
+                                margin: 0px 0px 19px 10px;
                             }
                         }
 
@@ -318,6 +320,7 @@ body{
                         }
                         .edit_container{
                             display: flex;
+                            flex-wrap: wrap;
                             justify-content: flex-end;
                             margin: 10px auto;
                             .cancel_update_button{
@@ -325,7 +328,7 @@ body{
                                 border: none;
                                 color: #707070;
                                 font: normal 400 16px/24px Poppins_medium;
-                                margin-right: 20px;
+                                margin: 20px 20px 0px 0px;
                             }
                             .update_button{
                                 background-color: @primary_color;
@@ -334,6 +337,7 @@ body{
                                 color: @white;
                                 font: normal 500 16px/24px Poppins_medium;
                                 padding: 7px 15px;
+                                margin-top: 20px;
                             }
                         }
     
@@ -359,7 +363,7 @@ body{
                             color: @white;
                             display: block;
                             font: normal 500 16px/24px Poppins_medium;
-                            margin: 20px 0 0px auto;
+                            margin: 10px 0 0px auto;
                             padding: 7px 20px;
                         }
                     }

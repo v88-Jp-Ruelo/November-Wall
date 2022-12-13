@@ -1,6 +1,7 @@
 /* variables */
 const create_message_button = document.getElementById('create_message_button');
 const close_modal = document.querySelectorAll('.close_modal');
+const close_modal_button = document.querySelectorAll('.close_modal_button');
 const delete_button = document.querySelectorAll('.delete_button');
 const post_button = document.querySelector('.post_button');
 const create_message_modal = document.querySelector('.create_message_modal');
@@ -8,23 +9,23 @@ const new_message_textarea = document.querySelector('.new_message_textarea');
 const message_item = document.querySelector('.message_item');
 const comment_item = document.querySelector('.comment_item');
 const empty_message_container = document.querySelector('.empty_message_container');
-const message_counter = document.querySelector('.message_counter');
+const message_counter = document.getElementById('message_counter');
 const message_container = document.getElementById('message_container');
 const remove_message = document.querySelector('.remove_message');
 const remove_comment = document.querySelector('.remove_comment');
-var temporary_message_value,
-    next_temporary_message_value,
-    temporary_comment_value,
-    next_temporary_comment_value="";
-
+const modal_board = document.querySelectorAll('.modal_board');
+const cancel_button = document.querySelectorAll('.cancel_button');
+let message_id=1 , comment_id =1;
 /* trigger to show create message modal */
 create_message_button.addEventListener('click', function(){
     showElement(create_message_modal);
 });
+
 /* hide modal when click cancel or close button */
-for(let index = 0; index < close_modal.length; index++){
-    close_modal[index].addEventListener('click', function(event){
-        hideElement(event.target.closest("form"));
+for(let hide_modal_trigger = 0; hide_modal_trigger < close_modal.length; hide_modal_trigger++){
+    close_modal[hide_modal_trigger].addEventListener('click', function(event){
+        event.preventDefault();
+        hideElement(event.target.closest(".modal"));
         resetValue(post_button,new_message_textarea);
     });
 }
@@ -32,45 +33,36 @@ for(let index = 0; index < close_modal.length; index++){
 new_message_textarea.addEventListener('keyup', function(event){
     checkTextArea(event,post_button);
 });
+
 /* trigger a new message everytime you click */
-post_button.addEventListener('click', function(){
+post_button.addEventListener('click', function(event){
+    event.preventDefault();
     createMessage(new_message_textarea.value);
     resetValue(post_button,new_message_textarea);
     hideElement(create_message_modal);
 });
+
 /* Event Listener whenever delete button has been click */
-let selected_clone = '';
-for(let index = 0; index < delete_button.length; index++){
-    delete_button[index].addEventListener('click', function(event){
-        let message_container = selected_clone.parentElement;
-        let delete_form = event.target.closest("form").classList;
-        if(event.target.classList.contains('delete_button')){
-            message_container.removeChild(selected_clone);
-            if(delete_form.contains('remove_message')){
-                hideElement(remove_message);
-                messageCounter();
-            }else{
-                commentCounter(message_container.parentElement);
-                hideElement(remove_comment);
-            }
-        }
-    });
+for(let remove_item_index = 0; remove_item_index < modal_board.length; remove_item_index++){
+    modal_board[remove_item_index].addEventListener('submit', function(event){deleteSelectedItem(event)});
 }
+
 
 
 /* functions */
 function createMessage(content){
     let cloned_item = message_item.cloneNode(true);
         cloned_item.classList.remove('hide');
-        next_temporary_message_value = temporary_message_value;
-        temporary_message_value = content;
-        cloned_item.querySelector('textarea').innerText = temporary_message_value;
+        cloned_item.querySelector('.message_content p').innerText = content;
+    
+    cloned_item.setAttribute('data-message-id',message_id);
 
     let update_button = cloned_item.querySelector('.update_button');
-    let edit_form = cloned_item.querySelector('.edit_form');
+    let edit_container = cloned_item.querySelector('.edit_container');
     let comment_form = cloned_item.querySelector('.comment_form');
     let post_comment_button = comment_form.querySelector('.post_comment_button');
-    const button_box = cloned_item.querySelector('.buttons');
+    let button_box = cloned_item.querySelector('.buttons');
+
     /* trigger to show or hide comment */
     button_box.querySelector('.comment').addEventListener('click', function(){showHideCommentTextArea(comment_form)});
 
@@ -78,57 +70,70 @@ function createMessage(content){
     comment_form.querySelector('textarea').addEventListener('keyup', function(event){checkTextArea(event,post_comment_button)});
 
     /* trigger to show delete modal */
-    button_box.querySelector('.delete').addEventListener('click', function(){removeMessage(cloned_item)});
+    button_box.querySelector('.delete').addEventListener('click', function(){showDelete(cloned_item)});
 
     /* Event Listener whenever a user click post comment button */
     cloned_item.querySelector('.comment_form').addEventListener('submit', function(event){addComment(event)});
 
     /* trigger to show editable textarea */
-    button_box.querySelector('.edit').addEventListener('click', function(){showEdit(button_box,cloned_item,temporary_message_value,next_temporary_message_value)});
+    button_box.querySelector('.edit').addEventListener('click', function(){showEdit(button_box,cloned_item)});
 
     /* trigger to check if textarea in edit form is empty */
-    edit_form.querySelector('textarea').addEventListener('keyup', function(event){checkTextArea(event,update_button)});
+    edit_container.querySelector('textarea').addEventListener('keyup', function(event){checkTextArea(event,update_button)});
+
+    edit_container.addEventListener('submit', function(event){updateMessage(event, cloned_item, button_box)});
 
     message_container.prepend(cloned_item);
     messageCounter();
+    message_id++;
 }
 
-function showEdit(button_box,content,temporary_message, previous_temporary_message){
-    let class_List = content.classList;
-    let edit_textarea = content.querySelector('textarea');
-    let edit_container = content.querySelector('.edit_container');
-    if(class_List.contains('not_editable')){
-        hideElement(button_box);
-        showElement(edit_container);
-        content.classList.add('editable');
-        content.classList.remove('not_editable');
-        edit_textarea.disabled = false;
+function showDelete(cloned_item){
+    if(cloned_item.classList.contains('message_item')){
+        remove_message.querySelector('input').value = cloned_item.getAttribute('data-message-id');
+        showElement(remove_message);
     }
-    /* event listener when cancel update is click */
-    edit_container.querySelector('.cancel_update_button').addEventListener('click', function(){
-        edit_textarea.value = temporary_message;
-        previous_temporary_message = temporary_message;
-        showButtonContainer(content, edit_textarea);
-    });
-    /* event listener when update button is click */
-    edit_container.querySelector('.update_button').addEventListener('click', function(){
-        previous_temporary_message = edit_textarea.value;
-        temporary_message = previous_temporary_message;
-        showButtonContainer(content, edit_textarea);
-    });
-    
+    else{
+        remove_comment.querySelector('input').value = cloned_item.getAttribute('data-comment-id');
+        showElement(remove_comment);
+    }
 }
 
-function showButtonContainer(content, edit_textarea){
-    hideElement(content.querySelector('.edit_container'));
-    showElement(content.querySelector('.buttons'));
-    content.classList.add('not_editable');
-    content.classList.remove('editable');
-    edit_textarea.disabled = true;
+function showEdit(button_box,content){
+    let edit_container = content.querySelector('.edit_container');
+    let edit_textarea = edit_container.querySelector('textarea');
+    let message_content = content.querySelector('.message_content');
+    let message = message_content.querySelector('p').innerText;
+    edit_textarea.value = message;
+
+    hideElement(button_box);
+    hideElement(message_content);
+    showElement(edit_container);
+
+    /* event listener inside edit to check if the user click cancel */
+    edit_container.querySelector('.cancel_update_button').addEventListener('click',function(){
+        hideElement(edit_container);
+        showElement(message_content);
+        showElement(button_box);
+    });
+}
+
+function updateMessage(event, message_container, button_box){
+    event.preventDefault();
+
+    let edit_container = message_container.querySelector('.edit_container');
+    let message_content = message_container.querySelector('.message_content');
+    const textarea_value = edit_container.querySelector('.edit_textarea').value;
+    const message_paragraph = message_content.querySelector('p');
+    message_paragraph.innerText = textarea_value;
+
+    showElement(message_content);
+    showElement(button_box);
+    hideElement(edit_container);
 }
 
 function messageCounter(){
-    let message_count = message_container.children.length - 2;
+    let message_count = message_container.children.length -2;
     message_counter.innerText = message_count;
     if(message_count > 0){
         hideElement(empty_message_container);
@@ -170,6 +175,28 @@ function resetValue (button,textarea){
     button.classList.add('disabled');
 }
 
+function deleteSelectedItem(event){
+    event.preventDefault();
+    let delete_form = event.target.closest('.modal').classList;
+    let clone_id = event.target[0].value;
+    let selected_clone='';
+    
+    if(delete_form.contains('remove_message')){
+        selected_clone = message_container.querySelector(`li[data-message-id="${clone_id}"]`);
+        selected_clone.closest("#message_container").removeChild(selected_clone);
+        hideElement(remove_message);
+        messageCounter();
+    }
+    else{
+        selected_clone = message_container.querySelector(`li[data-comment-id="${clone_id}"]`);
+        console.log("came comment here");
+        let comment_container = selected_clone.closest('.comment_container');
+        comment_container.removeChild(selected_clone);
+        hideElement(remove_comment);
+        commentCounter(comment_container.closest(".message_item")); 
+    }
+}
+
 function checkTextArea(event, post_button){
     let textarea_length = event.target.value.length;
     if(textarea_length>0){
@@ -194,38 +221,29 @@ function showHideCommentTextArea(comment_form){
     }
 }
 
-
-function removeMessage(cloned_message){
-    selected_clone = cloned_message;
-    showElement(remove_message);
-}
-
-function removeComment(comment_clone){
-    showElement(remove_comment);
-    selected_clone = comment_clone;
-}
-
 function addComment(event){
     event.preventDefault();
-    let selected_message = event.target.parentElement;
+    let selected_message = event.target.closest('.message_item');
     let post_comment_button = selected_message.querySelector('.post_comment_button')
-    let comment_form_textarea = selected_message.querySelector('.comment_form textarea');
+    let comment_form_textarea = selected_message.querySelector('.comment_form .comment_form_textarea');
     let comment_container = selected_message.querySelector('.comment_container');
+
     let comment_clone = comment_item.cloneNode(true);
+        comment_clone.setAttribute('data-comment-id', comment_id);
+        comment_clone.querySelector('.message_content p').innerText = event.target[0].value;
     const button_box = comment_clone.querySelector('.buttons');
-    const edit_form = comment_clone.querySelector('.edit_form');
+    const edit_container = comment_clone.querySelector('.edit_container');
     const update_button = comment_clone.querySelector('.update_button');
+    button_box.querySelector('.delete').addEventListener('click', function(){showDelete(comment_clone)});
+    button_box.querySelector('.edit').addEventListener('click', function(){showEdit(button_box,comment_clone)});
+    edit_container.querySelector('.edit_textarea').addEventListener('keyup', (event)=>checkTextArea(event, update_button));
+    edit_container.addEventListener('submit', function(event){updateMessage(event, comment_clone, button_box)});
 
-    comment_clone.querySelector('form textarea').value = comment_form_textarea.value;
-    temporary_comment_value = comment_form_textarea.value;
-    next_temporary_comment_value = temporary_comment_value;
-    comment_clone.querySelector('.delete').addEventListener('click', function(){removeComment(comment_clone)});
-    comment_clone.querySelector('.edit').addEventListener('click', function(){showEdit(button_box,comment_clone, temporary_comment_value, next_temporary_comment_value)});
-    edit_form.querySelector('textarea').addEventListener('keyup', (event)=>checkTextArea(event, update_button));
-
+    comment_container.prepend(comment_clone);
     resetValue(post_comment_button,comment_form_textarea);
     showElement(comment_clone);
     showElement(comment_container);
-    comment_container.prepend(comment_clone);
     commentCounter(selected_message);
+    comment_id++;
 }
+
